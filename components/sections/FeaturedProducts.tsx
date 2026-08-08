@@ -1,105 +1,229 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import { products } from "@/lib/constants/site";
 import { FadeIn } from "@/components/motion/FadeIn";
 
-const products = [
-  {
-    id: 1,
-    title: "CERAMIC SPRAY",
-    subtitle: "Exterior Care",
-    description:
-      "Hydrophobic protection with an ultra-gloss finish engineered for enthusiasts.",
-    image: "/images/products/ceramic.jpg",
-  },
-  {
-    id: 2,
-    title: "RAIN REPELLENT",
-    subtitle: "Glass Care",
-    description:
-      "Crystal clear visibility with long-lasting water repellency in every drive.",
-    image: "/images/products/rain.jpg",
-  },
-  {
-    id: 3,
-    title: "TYRE SHINE",
-    subtitle: "Wheel Care",
-    description:
-      "Deep satin finish that keeps tyres looking fresh without greasy residue.",
-    image: "/images/products/tyre.jpg",
-  },
-];
-
 export function FeaturedProducts() {
+  const heroProducts = products.filter(
+    (product) => product.tier === "Hero"
+  );
+
+  const coreProducts = products.filter(
+    (product) => product.tier === "Core"
+  );
+
   return (
     <section
       id="products"
-      className="bg-black py-32 px-6 lg:px-20"
+      className="bg-[#050505] px-6 py-32 lg:px-20 lg:py-40"
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="mx-auto max-w-7xl">
 
-        <p className="uppercase tracking-[0.35em] text-[#C8956C] text-sm">
-          BEST SELLERS
-        </p>
+        {/* SECTION HEADER */}
 
-        <h2 className="text-white text-5xl md:text-7xl font-black italic mt-5">
-          Featured Products
-        </h2>
+        <FadeIn>
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#C8956C]">
+              CARSAFE PRODUCTS
+            </p>
 
-        <div className="mt-24 space-y-36">
+            <h2 className="mt-5 text-5xl font-black uppercase italic leading-[0.9] tracking-[-0.04em] text-white md:text-7xl">
+              BUILT FOR
+              <br />
+              ENTHUSIASTS.
+            </h2>
 
-          {products.map((product, index) => (
+            <p className="mt-8 max-w-xl text-base leading-8 text-zinc-500 md:text-lg">
+              Premium automotive care products designed to protect,
+              restore and elevate every drive.
+            </p>
+          </div>
+        </FadeIn>
 
-            <FadeIn key={product.id}>
+        {/* ================= HERO PRODUCTS ================= */}
 
-              <div
-                className={`grid lg:grid-cols-2 gap-16 items-center ${
-                  index % 2 !== 0 ? "lg:[&>*:first-child]:order-2" : ""
-                }`}
-              >
+        <div className="mt-24">
 
-                <div>
+          <FadeIn>
+            <div className="mb-10 flex items-end justify-between">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#C8956C]">
+                  01
+                </p>
 
-                  <p className="uppercase tracking-[0.3em] text-[#C8956C] text-xs mb-5">
-                    {product.subtitle}
-                  </p>
-
-                  <h3 className="text-white text-5xl md:text-7xl font-black italic leading-none">
-                    {product.title}
-                  </h3>
-
-                  <p className="text-gray-400 mt-8 max-w-lg leading-8">
-                    {product.description}
-                  </p>
-
-                  <button className="mt-12 flex items-center gap-3 border border-white px-8 py-4 uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all">
-
-                    SHOP NOW
-
-                    <ArrowRight size={18} />
-
-                  </button>
-
-                </div>
-
-                <div className="relative h-[650px] rounded-xl overflow-hidden">
-
-                  <Image
-                    src={product.image}
-                    alt={product.title}
-                    fill
-                    className="object-cover transition duration-700 hover:scale-105"
-                  />
-
-                </div>
-
+                <h3 className="mt-3 text-3xl font-black uppercase italic text-white md:text-4xl">
+                  HERO PRODUCTS
+                </h3>
               </div>
 
-            </FadeIn>
+              <span className="hidden text-xs uppercase tracking-[0.2em] text-zinc-600 md:block">
+                {heroProducts.length} PRODUCTS
+              </span>
+            </div>
+          </FadeIn>
 
-          ))}
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {heroProducts.map((product, index) => (
+              <FadeIn
+                key={product.id}
+                delay={index * 0.08}
+              >
+                <article className="group h-full overflow-hidden border border-white/10 bg-[#0D0D0D] transition-all duration-500 hover:border-[#C8956C]/40">
 
+                  {/* IMAGE */}
+
+                  <div className="relative aspect-[4/5] overflow-hidden bg-[#111]">
+
+                    <Image
+                      src={product.image}
+                      alt={`CARSAFE ${product.name}`}
+                      fill
+                      priority={index < 3}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+
+                    <div className="absolute left-5 top-5">
+                      <span className="border border-[#C8956C]/40 bg-black/60 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#C8956C] backdrop-blur-md">
+                        HERO PRODUCT
+                      </span>
+                    </div>
+
+                  </div>
+
+                  {/* INFORMATION */}
+
+                  <div className="p-7 md:p-8">
+
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#C8956C]">
+                      {product.category}
+                    </p>
+
+                    <h4 className="mt-4 text-2xl font-black uppercase italic leading-tight text-white">
+                      {product.name}
+                    </h4>
+
+                    <p className="mt-4 text-sm leading-6 text-zinc-500">
+                      {product.description}
+                    </p>
+
+                    <div className="mt-7 flex items-center justify-between">
+
+                      <span className="text-sm font-semibold text-white">
+                        {product.price}
+                      </span>
+
+                      <Link
+                        href={`/products/${product.id}`}
+                        aria-label={`View ${product.name}`}
+                        className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-white transition-all duration-300 hover:border-[#C8956C]/50 hover:bg-[#C8956C] hover:text-black"
+                      >
+                        <ArrowUpRight size={17} />
+                      </Link>
+
+                    </div>
+
+                  </div>
+                </article>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+
+        {/* ================= CORE PRODUCTS ================= */}
+
+        <div className="mt-32">
+
+          <FadeIn>
+            <div className="mb-10 flex items-end justify-between">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#C8956C]">
+                  02
+                </p>
+
+                <h3 className="mt-3 text-3xl font-black uppercase italic text-white md:text-4xl">
+                  CORE PRODUCTS
+                </h3>
+              </div>
+
+              <span className="hidden text-xs uppercase tracking-[0.2em] text-zinc-600 md:block">
+                {coreProducts.length} PRODUCTS
+              </span>
+            </div>
+          </FadeIn>
+
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {coreProducts.map((product, index) => (
+              <FadeIn
+                key={product.id}
+                delay={index * 0.08}
+              >
+                <article className="group h-full overflow-hidden border border-white/10 bg-[#0D0D0D] transition-all duration-500 hover:border-[#C8956C]/40">
+
+                  {/* IMAGE */}
+
+                  <div className="relative aspect-[4/5] overflow-hidden bg-[#111]">
+
+                    <Image
+                      src={product.image}
+                      alt={`CARSAFE ${product.name}`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+
+                    <div className="absolute left-5 top-5">
+                      <span className="border border-white/20 bg-black/60 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-300 backdrop-blur-md">
+                        CORE PRODUCT
+                      </span>
+                    </div>
+
+                  </div>
+
+                  {/* INFORMATION */}
+
+                  <div className="p-7 md:p-8">
+
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#C8956C]">
+                      {product.category}
+                    </p>
+
+                    <h4 className="mt-4 text-2xl font-black uppercase italic leading-tight text-white">
+                      {product.name}
+                    </h4>
+
+                    <p className="mt-4 text-sm leading-6 text-zinc-500">
+                      {product.description}
+                    </p>
+
+                    <div className="mt-7 flex items-center justify-between">
+
+                      <span className="text-sm font-semibold text-white">
+                        {product.price}
+                      </span>
+
+                      <Link
+                        href={`/products/${product.id}`}
+                        aria-label={`View ${product.name}`}
+                        className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-white transition-all duration-300 hover:border-[#C8956C]/50 hover:bg-[#C8956C] hover:text-black"
+                      >
+                        <ArrowUpRight size={17} />
+                      </Link>
+
+                    </div>
+
+                  </div>
+                </article>
+              </FadeIn>
+            ))}
+          </div>
         </div>
 
       </div>

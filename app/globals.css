@@ -26,35 +26,107 @@
   --color-accent: var(--accent);
   --color-accent-light: var(--accent-light);
   --color-accent-dark: var(--accent-dark);
+
   --font-sans: var(--font-inter);
   --font-display: var(--font-anton);
   --font-label: var(--font-space);
 }
 
+/* =========================================================
+   BASE
+   ========================================================= */
+
 html {
   scroll-behavior: auto;
+  background: var(--void);
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
+  margin: 0;
+  min-width: 320px;
   background: var(--void);
   color: var(--silver);
   font-family: var(--font-inter), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
+/* Prevent accidental horizontal scrolling */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Images should never overflow their container */
+img,
+video,
+svg {
+  max-width: 100%;
+}
+
+/* Better mobile tap behaviour */
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Prevent ugly long words / product names from breaking layouts */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  overflow-wrap: break-word;
+}
+
+/* Selection */
 ::selection {
   background: color-mix(in srgb, var(--accent) 30%, transparent);
   color: var(--white);
 }
 
-/* ── Typography system ── */
+/* =========================================================
+   FORM / MOBILE KEYBOARD
+   ========================================================= */
+
+/*
+  iOS Safari zooms into inputs when the font is smaller than
+  16px. Keeping form controls at 16px prevents that behaviour.
+*/
+input,
+textarea,
+select {
+  font-size: 16px;
+}
+
+/* Remove iOS default styling */
+input,
+textarea,
+select,
+button {
+  font-family: inherit;
+}
+
+/* Better touch scrolling */
+textarea {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* =========================================================
+   TYPOGRAPHY SYSTEM
+   ========================================================= */
 
 .text-hero {
   font-family: var(--font-anton), sans-serif;
   font-weight: 900;
   font-style: italic;
-  font-size: clamp(5rem, 12vw, 11rem);
+  font-size: clamp(4rem, 12vw, 11rem);
   letter-spacing: -0.05em;
   line-height: 0.88;
   text-transform: uppercase;
@@ -109,9 +181,20 @@ body {
   font-family: var(--font-space), sans-serif;
 }
 
+/* =========================================================
+   SECTION SPACING
+   ========================================================= */
+
 .section-padding {
-  padding-top: 8rem;
-  padding-bottom: 8rem;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+@media (min-width: 640px) {
+  .section-padding {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
 }
 
 @media (min-width: 768px) {
@@ -128,12 +211,109 @@ body {
   }
 }
 
+/* =========================================================
+   MOBILE TYPOGRAPHY
+   ========================================================= */
+
+@media (max-width: 639px) {
+  .text-hero {
+    font-size: clamp(3.75rem, 19vw, 6rem);
+    line-height: 0.86;
+    letter-spacing: -0.055em;
+  }
+
+  .text-display {
+    font-size: clamp(2.5rem, 13vw, 4rem);
+    line-height: 0.9;
+  }
+
+  .text-heading {
+    font-size: 1.5rem;
+  }
+
+  .text-body {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+  }
+
+  .text-body-lg {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+  }
+}
+
+/* =========================================================
+   SAFE AREA — iPHONE
+   ========================================================= */
+
+/*
+  Helps fixed/sticky elements stay clear of the iPhone
+  home indicator and browser safe areas.
+*/
+
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.safe-area-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+/* =========================================================
+   MOBILE TOUCH TARGETS
+   ========================================================= */
+
+@media (max-width: 767px) {
+  /*
+    Prevent tiny interactive elements on phones.
+    We don't force every button to 44px because some of your
+    design elements intentionally use smaller controls.
+  */
+
+  button,
+  [role="button"] {
+    touch-action: manipulation;
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITY / REDUCED MOTION
+   ========================================================= */
+
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
+}
+
+/* =========================================================
+   MOBILE HEIGHT FIX
+   ========================================================= */
+
+/*
+  Modern mobile browsers dynamically change their viewport
+  height when the address bar appears/disappears.
+
+  Use min-height: 100svh on sections that need screen height.
+*/
+
+.min-screen-mobile {
+  min-height: 100svh;
+}
+
+/* =========================================================
+   PREVENT HORIZONTAL LAYOUT PROBLEMS
+   ========================================================= */
+
+section,
+header,
+footer,
+main {
+  max-width: 100%;
 }

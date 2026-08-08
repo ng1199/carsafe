@@ -1,101 +1,146 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import { testimonials } from "@/lib/constants/site";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { GlassCard } from "@/components/ui/GlassCard";
+import { ArrowLeft, ArrowRight, Quote } from "lucide-react";
 import { FadeIn } from "@/components/motion/FadeIn";
-import { Label } from "@/components/ui/Label";
+
+const reviews = [
+  {
+    quote:
+      "The finish after using CARSAFE Ceramic Spray was exactly what I was looking for. Deep gloss, smooth paint and seriously impressive water beading.",
+    name: "CARSAFE Customer",
+    product: "Ceramic Spray",
+  },
+  {
+    quote:
+      "The Rain Repellent is incredibly easy to apply and the difference during rain is noticeable immediately. One of the easiest upgrades I've made to my car care routine.",
+    name: "CARSAFE Customer",
+    product: "Rain Repellent",
+  },
+  {
+    quote:
+      "Finally a tyre product that gives a clean, refined finish without making the tyres look greasy. It has become part of every wash.",
+    name: "CARSAFE Customer",
+    product: "Tyre Shine",
+  },
+];
 
 export function Testimonials() {
-  const [current, setCurrent] = useState(0);
+  const [active, setActive] = useState(0);
 
-  const next = () => setCurrent((prev) => (prev + 1) % testimonials.length);
-  const prev = () =>
-    setCurrent(
-      (prev) => (prev - 1 + testimonials.length) % testimonials.length
+  const next = () => {
+    setActive((current) => (current + 1) % reviews.length);
+  };
+
+  const previous = () => {
+    setActive(
+      (current) => (current - 1 + reviews.length) % reviews.length
     );
+  };
 
-  const testimonial = testimonials[current];
+  const review = reviews[active];
 
   return (
-    <section id="testimonials" className="section-padding bg-void">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <SectionHeading
-          label="Testimonials"
-          title="Trusted by enthusiasts"
-          description="Don't take our word for it — hear from those who demand the best."
-        />
+    <section
+      id="reviews"
+      className="bg-[#050505] px-6 py-32 lg:px-20 lg:py-40"
+    >
+      <div className="mx-auto max-w-7xl">
 
         <FadeIn>
-          <GlassCard className="relative mx-auto max-w-3xl p-12 md:p-16">
+          <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#C8956C]">
+                REVIEWS
+              </p>
+
+              <h2 className="mt-5 text-5xl font-black uppercase italic leading-[0.9] tracking-[-0.04em] text-white md:text-7xl">
+                MADE TO
+                <br />
+                BE NOTICED.
+              </h2>
+            </div>
+
+            <p className="max-w-md text-base leading-7 text-zinc-500">
+              What matters most is what happens after the bottle is opened.
+              Real results, real vehicles, real enthusiasts.
+            </p>
+          </div>
+        </FadeIn>
+
+        {/* Review */}
+
+        <FadeIn delay={0.1}>
+          <div className="mt-20 border-y border-white/10 py-16 md:mt-28 md:py-24">
+
             <Quote
-              size={40}
-              className="mb-10 text-accent/30"
+              size={36}
               strokeWidth={1}
+              className="text-[#C8956C]"
             />
 
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={testimonial.id}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-              >
-                <blockquote
-                  className="text-body-lg text-silver"
-                  style={{ maxWidth: "48ch", fontSize: "1.125rem" }}
-                >
-                  &ldquo;{testimonial.quote}&rdquo;
-                </blockquote>
-                <div className="mt-12">
-                  <p className="text-heading text-white">{testimonial.author}</p>
-                  <Label className="mt-2 text-mist">{testimonial.vehicle}</Label>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+            <blockquote className="mt-8 max-w-5xl text-3xl font-medium leading-tight tracking-tight text-white md:text-5xl">
+              “{review.quote}”
+            </blockquote>
 
-            <div className="mt-14 flex items-center justify-between">
-              <div className="flex gap-2">
-                {testimonials.map((_, i) => (
-                  <button
-                    key={i}
-                    type="button"
-                    onClick={() => setCurrent(i)}
-                    aria-label={`Go to testimonial ${i + 1}`}
-                    className={`h-1 rounded-full transition-all duration-300 ${
-                      i === current
-                        ? "w-8 bg-accent"
-                        : "w-4 bg-white/20 hover:bg-white/40"
-                    }`}
-                  />
-                ))}
+            <div className="mt-12 flex flex-col justify-between gap-8 md:flex-row md:items-end">
+
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-white">
+                  {review.name}
+                </p>
+
+                <p className="mt-2 text-sm uppercase tracking-[0.15em] text-zinc-500">
+                  {review.product}
+                </p>
               </div>
 
-              <div className="flex gap-2">
+              {/* Controls */}
+
+              <div className="flex items-center gap-3">
+
                 <button
                   type="button"
-                  onClick={prev}
-                  aria-label="Previous testimonial"
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-silver transition-all duration-300 hover:border-white/20 hover:text-white"
+                  onClick={previous}
+                  aria-label="Previous review"
+                  className="flex h-12 w-12 items-center justify-center border border-white/10 text-white transition-all duration-300 hover:border-white hover:bg-white hover:text-black"
                 >
-                  <ChevronLeft size={18} />
+                  <ArrowLeft size={18} />
                 </button>
+
                 <button
                   type="button"
                   onClick={next}
-                  aria-label="Next testimonial"
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-silver transition-all duration-300 hover:border-white/20 hover:text-white"
+                  aria-label="Next review"
+                  className="flex h-12 w-12 items-center justify-center border border-white/10 text-white transition-all duration-300 hover:border-white hover:bg-white hover:text-black"
                 >
-                  <ChevronRight size={18} />
+                  <ArrowRight size={18} />
                 </button>
+
               </div>
+
             </div>
-          </GlassCard>
+          </div>
         </FadeIn>
+
+        {/* Indicators */}
+
+        <div className="mt-8 flex gap-2">
+          {reviews.map((_, index) => (
+            <button
+              key={index}
+              type="button"
+              onClick={() => setActive(index)}
+              aria-label={`Go to review ${index + 1}`}
+              className={`h-1 transition-all duration-300 ${
+                index === active
+                  ? "w-10 bg-[#C8956C]"
+                  : "w-4 bg-white/20"
+              }`}
+            />
+          ))}
+        </div>
+
       </div>
     </section>
   );

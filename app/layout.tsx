@@ -1,6 +1,7 @@
 import { Inter, Anton, Space_Grotesk } from "next/font/google";
 import type { Metadata } from "next";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
+import { CartProvider } from "@/lib/cart/CartContext";
 import { siteConfig } from "@/lib/constants/site";
 import "./globals.css";
 
@@ -33,14 +34,22 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html
       lang="en"
       className={`${inter.variable} ${anton.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-void font-sans text-silver">
-        <SmoothScrollProvider>{children}</SmoothScrollProvider>
+      <body>
+        <CartProvider>
+          <SmoothScrollProvider>
+            {children}
+          </SmoothScrollProvider>
+        </CartProvider>
       </body>
     </html>
   );

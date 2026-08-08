@@ -16,9 +16,9 @@ export const siteConfig = {
 export const navLinks = [
   { label: "Products", href: "#products" },
   { label: "Collections", href: "#collections" },
-  { label: "Best Sellers", href: "#best" },
-  { label: "Community", href: "#community" },
+  { label: "About", href: "#about" },
   { label: "Reviews", href: "#reviews" },
+  { label: "Contact", href: "#contact" },
 ];
 
 export const services = [
@@ -54,39 +54,114 @@ export const services = [
 
 export const products = [
   {
-    id: "1",
-    name: "Ceramic Spray",
+    id: "diamond-glazed-ceramic-spray",
+    name: "Diamond Glazed Ceramic Spray",
     category: "Exterior Care",
+    tier: "Hero",
     price: "₹999",
-    image: "https://images.unsplash.com/photo-1607861716497-e65ab29fc7ac?w=1200&q=80",
+    description:
+      "A premium ceramic spray designed to enhance gloss, slickness and water beading.",
+    image: "/images/products/diamond-glazed-ceramic-spray.jpg",
   },
   {
-    id: "2",
-    name: "Rain Repellent",
+    id: "glass-anti-fog",
+    name: "Glass Anti-Fog",
     category: "Glass Care",
+    tier: "Hero",
     price: "₹699",
-    image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&q=80",
+    description:
+      "Anti-fog glass protection designed to maintain clear visibility in changing conditions.",
+    image: "/images/products/glass-anti-fog.jpg",
   },
   {
-    id: "3",
-    name: "Wheel Cleaner",
-    category: "Wheel Care",
+    id: "glass-oil-film-cleaner",
+    name: "Glass Oil Film Cleaner",
+    category: "Glass Care",
+    tier: "Hero",
+    price: "₹699",
+    description:
+      "A dedicated glass cleaner formulated to remove stubborn oily film and restore clarity.",
+    image: "/images/products/glass-oil-film-cleaner.jpg",
+  },
+  {
+    id: "water-spot-remover",
+    name: "Water Spot Remover",
+    category: "Exterior Care",
+    tier: "Hero",
     price: "₹799",
-    image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200&q=80",
+    description:
+      "Designed to tackle mineral deposits and water spots while restoring a cleaner finish.",
+    image: "/images/products/water-spot-remover.jpg",
   },
   {
-    id: "4",
-    name: "Tyre Shine",
-    category: "Wheel Care",
-    price: "₹599",
-    image: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=1200&q=80",
-  },
-  {
-    id: "5",
-    name: "Interior Cleaner",
-    category: "Interior Care",
+    id: "graphene-plastic-restorer",
+    name: "Graphene Plastic Restorer",
+    category: "Interior & Trim",
+    tier: "Hero",
     price: "₹899",
-    image: "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=1200&q=80",
+    description:
+      "Restores faded plastic and trim with a rich finish and protective surface treatment.",
+    image: "/images/products/graphene-plastic-restorer.jpg",
+  },
+  {
+    id: "foam-ac-cleaner",
+    name: "Foam AC Cleaner",
+    category: "Interior Care",
+    tier: "Hero",
+    price: "₹599",
+    description:
+      "Foaming automotive AC cleaning solution designed for convenient vehicle interior maintenance.",
+    image: "/images/products/foam-ac-cleaner.jpg",
+  },
+  {
+    id: "1200-gsm-twisted-loop",
+    name: "1200 GSM Twisted Loop",
+    category: "Microfiber",
+    tier: "Core",
+    price: "₹499",
+    description:
+      "High-absorption twisted-loop microfiber designed for efficient vehicle drying.",
+    image: "/images/products/1200-gsm-twisted-loop.jpg",
+  },
+  {
+    id: "530-gsm-edgeless",
+    name: "530 GSM Edgeless",
+    category: "Microfiber",
+    tier: "Core",
+    price: "₹299",
+    description:
+      "Soft edgeless microfiber designed for safe and controlled automotive surface care.",
+    image: "/images/products/530-gsm-edgeless.jpg",
+  },
+  {
+    id: "ceramic-glass-cleaner-coating",
+    name: "Ceramic Glass Cleaner & Coating",
+    category: "Glass Care",
+    tier: "Core",
+    price: "₹799",
+    description:
+      "Glass cleaning and protection in one convenient maintenance product.",
+    image: "/images/products/ceramic-glass-cleaner-coating.jpg",
+  },
+  {
+    id: "tire-shine-trim-dressing",
+    name: "Tire Shine & Trim Dressing",
+    category: "Exterior Care",
+    tier: "Core",
+    price: "₹599",
+    description:
+      "A versatile dressing for tyres and exterior trim, creating a clean and refined finish.",
+    image: "/images/products/tire-shine-trim-dressing.jpg",
+  },
+  {
+    id: "glass-microfiber",
+    name: "Glass Microfiber",
+    category: "Microfiber",
+    tier: "Core",
+    price: "₹199",
+    description:
+      "Low-lint microfiber designed specifically for streak-free automotive glass cleaning.",
+    image: "/images/products/glass-microfiber.jpg",
   },
 ];
 
