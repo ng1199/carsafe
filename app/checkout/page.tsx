@@ -32,37 +32,43 @@ export default function CheckoutPage() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
     e.preventDefault();
 
     setSubmitted(true);
     clearCart();
   };
 
+  {/* =====================================================
+      ORDER RECEIVED
+  ===================================================== */}
+
   if (submitted) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-[#050505] px-6 text-white">
+      <main className="flex min-h-screen items-center justify-center bg-[#050505] px-5 text-white sm:px-6">
 
-        <div className="max-w-xl text-center">
+        <div className="w-full max-w-xl text-center">
 
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#C8956C]">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#C8956C] sm:text-xs">
             CARSAFE
           </p>
 
-          <h1 className="mt-6 text-5xl font-black uppercase italic leading-[0.9] md:text-7xl">
+          <h1 className="mt-4 text-4xl font-black uppercase italic leading-[0.9] sm:mt-6 sm:text-5xl md:text-7xl">
             ORDER
             <br />
             RECEIVED.
           </h1>
 
-          <p className="mt-8 text-base leading-8 text-zinc-500">
+          <p className="mx-auto mt-5 max-w-md text-sm leading-7 text-zinc-500 sm:mt-8 sm:text-base sm:leading-8">
             Thank you for choosing CARSAFE. Your test order has
             been successfully submitted.
           </p>
 
           <Link
             href="/"
-            className="mt-10 inline-flex h-14 items-center justify-center bg-[#C8956C] px-10 text-xs font-bold uppercase tracking-[0.2em] text-black transition hover:bg-[#D7A77D]"
+            className="mt-8 inline-flex h-12 items-center justify-center bg-[#C8956C] px-8 text-[10px] font-bold uppercase tracking-[0.18em] text-black transition hover:bg-[#D7A77D] sm:mt-10 sm:h-14 sm:px-10 sm:text-xs"
           >
             BACK TO CARSAFE
           </Link>
@@ -73,23 +79,27 @@ export default function CheckoutPage() {
     );
   }
 
+  {/* =====================================================
+      EMPTY CART
+  ===================================================== */}
+
   if (items.length === 0) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-[#050505] px-6 text-white">
+      <main className="flex min-h-screen items-center justify-center bg-[#050505] px-5 text-white sm:px-6">
 
         <div className="text-center">
 
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#C8956C]">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#C8956C] sm:text-xs">
             CARSAFE CHECKOUT
           </p>
 
-          <h1 className="mt-5 text-4xl font-black uppercase italic">
+          <h1 className="mt-4 text-3xl font-black uppercase italic sm:mt-5 sm:text-4xl">
             YOUR CART IS EMPTY
           </h1>
 
           <Link
             href="/#products"
-            className="mt-8 inline-flex h-12 items-center justify-center bg-[#C8956C] px-8 text-xs font-bold uppercase tracking-[0.2em] text-black"
+            className="mt-7 inline-flex h-11 items-center justify-center bg-[#C8956C] px-7 text-[10px] font-bold uppercase tracking-[0.18em] text-black sm:mt-8 sm:h-12 sm:px-8 sm:text-xs"
           >
             SHOP PRODUCTS
           </Link>
@@ -103,53 +113,64 @@ export default function CheckoutPage() {
   return (
     <main className="min-h-screen bg-[#050505] text-white">
 
-      {/* HEADER */}
+      {/* =====================================================
+          HEADER
+      ===================================================== */}
 
       <header className="border-b border-white/[0.06]">
 
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-6 sm:py-6 lg:px-8">
 
           <Link
             href="/"
-            className="text-xl font-black tracking-[0.25em]"
+            className="text-lg font-black tracking-[0.25em] sm:text-xl"
           >
             CARSAFE
           </Link>
 
-          <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-zinc-500">
-            <Lock size={14} />
+          <div className="flex items-center gap-1.5 text-[9px] uppercase tracking-[0.15em] text-zinc-500 sm:gap-2 sm:text-xs sm:tracking-[0.2em]">
+
+            <Lock size={13} />
+
             Secure Checkout
+
           </div>
 
         </div>
 
       </header>
 
-      {/* CONTENT */}
+      {/* =====================================================
+          CHECKOUT CONTENT
+      ===================================================== */}
 
-      <section className="px-6 py-14 lg:px-8 lg:py-24">
+      <section className="px-5 py-9 sm:px-6 sm:py-14 lg:px-8 lg:py-24">
 
         <div className="mx-auto max-w-7xl">
 
+          {/* BACK TO CART */}
+
           <Link
             href="/cart"
-            className="mb-10 flex w-fit items-center gap-2 text-xs uppercase tracking-[0.2em] text-zinc-500 transition hover:text-white"
+            className="mb-8 flex w-fit items-center gap-2 text-[10px] uppercase tracking-[0.15em] text-zinc-500 transition hover:text-white sm:mb-10 sm:text-xs sm:tracking-[0.2em]"
           >
-            <ArrowLeft size={15} />
+            <ArrowLeft size={14} />
             Back to cart
           </Link>
 
-          <div className="grid gap-14 lg:grid-cols-3 lg:gap-20">
+          <div className="grid gap-8 lg:grid-cols-3 lg:gap-20">
 
-            {/* FORM */}
+            {/* =================================================
+                FORM
+            ================================================= */}
 
             <div className="lg:col-span-2">
 
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#C8956C]">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#C8956C] sm:text-xs">
                 CHECKOUT
               </p>
 
-              <h1 className="mt-5 text-5xl font-black uppercase italic leading-[0.9] md:text-6xl">
+              <h1 className="mt-4 text-4xl font-black uppercase italic leading-[0.9] sm:text-5xl md:text-6xl">
                 YOUR
                 <br />
                 DETAILS.
@@ -157,15 +178,16 @@ export default function CheckoutPage() {
 
               <form
                 onSubmit={handleSubmit}
-                className="mt-12 space-y-8"
+                className="mt-8 space-y-5 sm:mt-12 sm:space-y-8"
               >
 
                 {/* NAME */}
 
                 <div>
+
                   <label
                     htmlFor="name"
-                    className="mb-3 block text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500"
+                    className="mb-2 block text-[9px] font-semibold uppercase tracking-[0.2em] text-zinc-500 sm:mb-3 sm:text-[10px]"
                   >
                     FULL NAME
                   </label>
@@ -177,18 +199,21 @@ export default function CheckoutPage() {
                     onChange={handleChange}
                     required
                     placeholder="Your full name"
-                    className="w-full rounded-none border border-white/10 bg-[#0D0D0D] px-4 py-4 text-sm text-white outline-none transition focus:border-[#C8956C]/50"
+                    autoComplete="name"
+                    className="w-full border border-white/10 bg-[#0D0D0D] px-4 py-3.5 text-sm text-white outline-none transition focus:border-[#C8956C]/50 sm:py-4"
                   />
+
                 </div>
 
                 {/* PHONE + EMAIL */}
 
-                <div className="grid gap-8 md:grid-cols-2">
+                <div className="grid gap-5 sm:grid-cols-2 sm:gap-7">
 
                   <div>
+
                     <label
                       htmlFor="phone"
-                      className="mb-3 block text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500"
+                      className="mb-2 block text-[9px] font-semibold uppercase tracking-[0.2em] text-zinc-500 sm:mb-3 sm:text-[10px]"
                     >
                       MOBILE NUMBER
                     </label>
@@ -197,18 +222,22 @@ export default function CheckoutPage() {
                       id="phone"
                       name="phone"
                       type="tel"
+                      inputMode="tel"
                       value={form.phone}
                       onChange={handleChange}
                       required
                       placeholder="+91 XXXXX XXXXX"
-                      className="w-full border border-white/10 bg-[#0D0D0D] px-4 py-4 text-sm text-white outline-none transition focus:border-[#C8956C]/50"
+                      autoComplete="tel"
+                      className="w-full border border-white/10 bg-[#0D0D0D] px-4 py-3.5 text-sm text-white outline-none transition focus:border-[#C8956C]/50 sm:py-4"
                     />
+
                   </div>
 
                   <div>
+
                     <label
                       htmlFor="email"
-                      className="mb-3 block text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500"
+                      className="mb-2 block text-[9px] font-semibold uppercase tracking-[0.2em] text-zinc-500 sm:mb-3 sm:text-[10px]"
                     >
                       EMAIL
                     </label>
@@ -221,8 +250,10 @@ export default function CheckoutPage() {
                       onChange={handleChange}
                       required
                       placeholder="you@email.com"
-                      className="w-full border border-white/10 bg-[#0D0D0D] px-4 py-4 text-sm text-white outline-none transition focus:border-[#C8956C]/50"
+                      autoComplete="email"
+                      className="w-full border border-white/10 bg-[#0D0D0D] px-4 py-3.5 text-sm text-white outline-none transition focus:border-[#C8956C]/50 sm:py-4"
                     />
+
                   </div>
 
                 </div>
@@ -230,9 +261,10 @@ export default function CheckoutPage() {
                 {/* ADDRESS */}
 
                 <div>
+
                   <label
                     htmlFor="address"
-                    className="mb-3 block text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500"
+                    className="mb-2 block text-[9px] font-semibold uppercase tracking-[0.2em] text-zinc-500 sm:mb-3 sm:text-[10px]"
                   >
                     DELIVERY ADDRESS
                   </label>
@@ -244,18 +276,21 @@ export default function CheckoutPage() {
                     onChange={handleChange}
                     required
                     placeholder="House number, street, area"
-                    className="w-full border border-white/10 bg-[#0D0D0D] px-4 py-4 text-sm text-white outline-none transition focus:border-[#C8956C]/50"
+                    autoComplete="street-address"
+                    className="w-full border border-white/10 bg-[#0D0D0D] px-4 py-3.5 text-sm text-white outline-none transition focus:border-[#C8956C]/50 sm:py-4"
                   />
+
                 </div>
 
                 {/* CITY / STATE / PINCODE */}
 
-                <div className="grid gap-8 md:grid-cols-3">
+                <div className="grid gap-5 sm:grid-cols-3 sm:gap-7">
 
                   <div>
+
                     <label
                       htmlFor="city"
-                      className="mb-3 block text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500"
+                      className="mb-2 block text-[9px] font-semibold uppercase tracking-[0.2em] text-zinc-500 sm:mb-3 sm:text-[10px]"
                     >
                       CITY
                     </label>
@@ -267,14 +302,17 @@ export default function CheckoutPage() {
                       onChange={handleChange}
                       required
                       placeholder="Dehradun"
-                      className="w-full border border-white/10 bg-[#0D0D0D] px-4 py-4 text-sm text-white outline-none transition focus:border-[#C8956C]/50"
+                      autoComplete="address-level2"
+                      className="w-full border border-white/10 bg-[#0D0D0D] px-4 py-3.5 text-sm text-white outline-none transition focus:border-[#C8956C]/50 sm:py-4"
                     />
+
                   </div>
 
                   <div>
+
                     <label
                       htmlFor="state"
-                      className="mb-3 block text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500"
+                      className="mb-2 block text-[9px] font-semibold uppercase tracking-[0.2em] text-zinc-500 sm:mb-3 sm:text-[10px]"
                     >
                       STATE
                     </label>
@@ -286,14 +324,17 @@ export default function CheckoutPage() {
                       onChange={handleChange}
                       required
                       placeholder="Uttarakhand"
-                      className="w-full border border-white/10 bg-[#0D0D0D] px-4 py-4 text-sm text-white outline-none transition focus:border-[#C8956C]/50"
+                      autoComplete="address-level1"
+                      className="w-full border border-white/10 bg-[#0D0D0D] px-4 py-3.5 text-sm text-white outline-none transition focus:border-[#C8956C]/50 sm:py-4"
                     />
+
                   </div>
 
                   <div>
+
                     <label
                       htmlFor="pincode"
-                      className="mb-3 block text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500"
+                      className="mb-2 block text-[9px] font-semibold uppercase tracking-[0.2em] text-zinc-500 sm:mb-3 sm:text-[10px]"
                     >
                       PIN CODE
                     </label>
@@ -302,31 +343,36 @@ export default function CheckoutPage() {
                       id="pincode"
                       name="pincode"
                       inputMode="numeric"
+                      maxLength={6}
                       value={form.pincode}
                       onChange={handleChange}
                       required
                       placeholder="248001"
-                      className="w-full border border-white/10 bg-[#0D0D0D] px-4 py-4 text-sm text-white outline-none transition focus:border-[#C8956C]/50"
+                      autoComplete="postal-code"
+                      className="w-full border border-white/10 bg-[#0D0D0D] px-4 py-3.5 text-sm text-white outline-none transition focus:border-[#C8956C]/50 sm:py-4"
                     />
+
                   </div>
 
                 </div>
 
-                {/* PAYMENT */}
+                {/* =================================================
+                    PAYMENT
+                ================================================= */}
 
-                <div className="border-t border-white/10 pt-10">
+                <div className="border-t border-white/10 pt-7 sm:pt-10">
 
-                  <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#C8956C]">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#C8956C] sm:text-xs">
                     PAYMENT
                   </p>
 
-                  <div className="mt-6 border border-[#C8956C]/40 bg-[#C8956C]/5 p-5">
+                  <div className="mt-4 border border-[#C8956C]/40 bg-[#C8956C]/5 p-4 sm:mt-6 sm:p-5">
 
                     <p className="text-sm font-semibold text-white">
                       Test Checkout
                     </p>
 
-                    <p className="mt-2 text-xs leading-6 text-zinc-500">
+                    <p className="mt-1.5 text-xs leading-5 text-zinc-500 sm:mt-2 sm:leading-6">
                       No real payment will be processed. This is
                       currently a testing version of the CARSAFE
                       checkout.
@@ -336,9 +382,11 @@ export default function CheckoutPage() {
 
                 </div>
 
+                {/* PLACE ORDER */}
+
                 <button
                   type="submit"
-                  className="flex h-14 w-full items-center justify-center bg-[#C8956C] text-xs font-bold uppercase tracking-[0.2em] text-black transition hover:bg-[#D7A77D]"
+                  className="flex h-12 w-full items-center justify-center bg-[#C8956C] text-[10px] font-bold uppercase tracking-[0.18em] text-black transition hover:bg-[#D7A77D] sm:h-14 sm:text-xs sm:tracking-[0.2em]"
                 >
                   PLACE TEST ORDER
                 </button>
@@ -347,42 +395,45 @@ export default function CheckoutPage() {
 
             </div>
 
-            {/* ORDER SUMMARY */}
+            {/* =================================================
+                ORDER SUMMARY
+            ================================================= */}
 
-            <aside className="h-fit border border-white/10 bg-[#0D0D0D] p-7 lg:p-8">
+            <aside className="h-fit border border-white/10 bg-[#0D0D0D] p-5 sm:p-7 lg:p-8">
 
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#C8956C]">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#C8956C] sm:text-xs">
                 ORDER SUMMARY
               </p>
 
-              <div className="mt-8 space-y-6">
+              <div className="mt-5 space-y-4 sm:mt-8 sm:space-y-6">
 
                 {items.map((item) => (
 
                   <div
                     key={item.id}
-                    className="flex justify-between gap-5 border-b border-white/[0.06] pb-5"
+                    className="flex justify-between gap-4 border-b border-white/[0.06] pb-4 sm:gap-5 sm:pb-5"
                   >
 
-                    <div>
+                    <div className="min-w-0">
 
-                      <p className="text-sm font-semibold uppercase italic text-white">
+                      <p className="text-xs font-semibold uppercase italic text-white sm:text-sm">
                         {item.name}
                       </p>
 
-                      <p className="mt-2 text-xs text-zinc-600">
+                      <p className="mt-1 text-[10px] text-zinc-600 sm:mt-2 sm:text-xs">
                         Qty: {item.quantity}
                       </p>
 
                     </div>
 
-                    <p className="text-sm text-white">
-                      ₹
-                      {(
+                    <p className="shrink-0 text-xs text-white sm:text-sm">
+
+                      {formatPrice(
                         Number(
                           item.price.replace(/[₹,\s]/g, "")
                         ) * item.quantity
-                      ).toLocaleString("en-IN")}
+                      )}
+
                     </p>
 
                   </div>
@@ -391,13 +442,13 @@ export default function CheckoutPage() {
 
               </div>
 
-              <div className="mt-8 flex items-center justify-between border-t border-white/10 pt-7">
+              <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-5 sm:mt-8 sm:pt-7">
 
-                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
+                <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500 sm:text-xs">
                   TOTAL
                 </span>
 
-                <span className="text-2xl font-semibold">
+                <span className="text-xl font-semibold sm:text-2xl">
                   {formatPrice(totalPrice)}
                 </span>
 

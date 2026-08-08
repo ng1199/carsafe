@@ -47,74 +47,89 @@ export function FAQ() {
   return (
     <section
       id="faq"
-      className="bg-[#0A0A0A] px-6 py-32 lg:px-20 lg:py-40"
+      className="bg-[#050505] px-5 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-32"
     >
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-4xl">
+
+        {/* HEADER */}
 
         <FadeIn>
-          <div className="text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#C8956C]">
+          <div className="text-left sm:text-center">
+
+            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#C8956C] sm:text-xs">
               FAQ
             </p>
 
-            <h2 className="mt-5 text-5xl font-black uppercase italic leading-[0.9] tracking-[-0.04em] text-white md:text-7xl">
+            <h2 className="mt-4 text-4xl font-black uppercase italic leading-[0.9] tracking-[-0.04em] text-white sm:text-5xl md:text-7xl">
               QUESTIONS.
               <br />
               ANSWERED.
             </h2>
 
-            <p className="mx-auto mt-8 max-w-2xl text-base leading-7 text-zinc-500 md:text-lg">
+            <p className="mt-5 max-w-xl text-sm leading-7 text-zinc-500 sm:mx-auto sm:mt-6 sm:text-base">
               Everything you need to know before making CARSAFE part of your
               car care routine.
             </p>
+
           </div>
         </FadeIn>
 
-        <div className="mt-20 border-t border-white/10 md:mt-28">
+        {/* QUESTIONS */}
+
+        <div className="mt-10 border-t border-white/10 sm:mt-14 md:mt-20">
+
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
 
             return (
-              <FadeIn key={faq.question} delay={index * 0.04}>
+              <FadeIn key={faq.question} delay={index * 0.03}>
+
                 <div className="border-b border-white/10">
 
                   <button
                     type="button"
                     onClick={() => toggle(index)}
                     aria-expanded={isOpen}
-                    className="flex w-full items-center justify-between gap-8 py-7 text-left transition-colors duration-300 hover:text-[#C8956C] md:py-8"
+                    className="flex w-full items-center justify-between gap-4 py-5 text-left sm:gap-8 sm:py-7"
                   >
-                    <span className="text-base font-semibold text-white md:text-lg">
+                    <span className="text-sm font-semibold leading-5 text-white sm:text-base md:text-lg">
                       {faq.question}
                     </span>
 
                     <span
-                      className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 transition-transform duration-300 ${
+                      className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/10 transition-transform duration-300 sm:h-9 sm:w-9 ${
                         isOpen ? "rotate-180" : ""
                       }`}
                     >
-                      <ChevronDown size={17} className="text-zinc-400" />
+                      <ChevronDown
+                        size={15}
+                        className="text-zinc-400"
+                      />
                     </span>
                   </button>
 
                   <div
                     className={`grid transition-all duration-300 ${
                       isOpen
-                        ? "grid-rows-[1fr] pb-8 opacity-100"
+                        ? "grid-rows-[1fr] pb-5 opacity-100 sm:pb-7"
                         : "grid-rows-[0fr] opacity-0"
                     }`}
                   >
                     <div className="overflow-hidden">
-                      <p className="max-w-3xl pr-12 text-sm leading-7 text-zinc-500 md:text-base">
+
+                      <p className="max-w-3xl pr-8 text-xs leading-6 text-zinc-500 sm:pr-12 sm:text-sm sm:leading-7 md:text-base">
                         {faq.answer}
                       </p>
+
                     </div>
                   </div>
 
                 </div>
+
               </FadeIn>
             );
           })}
+
         </div>
 
       </div>

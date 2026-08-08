@@ -43,89 +43,89 @@ export function Testimonials() {
   return (
     <section
       id="reviews"
-      className="bg-[#050505] px-6 py-32 lg:px-20 lg:py-40"
+      className="bg-[#0A0A0A] px-5 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-32"
     >
       <div className="mx-auto max-w-7xl">
 
+        {/* HEADER */}
+
         <FadeIn>
-          <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#C8956C]">
-                REVIEWS
-              </p>
+          <div className="max-w-3xl">
 
-              <h2 className="mt-5 text-5xl font-black uppercase italic leading-[0.9] tracking-[-0.04em] text-white md:text-7xl">
-                MADE TO
-                <br />
-                BE NOTICED.
-              </h2>
-            </div>
-
-            <p className="max-w-md text-base leading-7 text-zinc-500">
-              What matters most is what happens after the bottle is opened.
-              Real results, real vehicles, real enthusiasts.
+            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#C8956C] sm:text-xs">
+              REVIEWS
             </p>
+
+            <h2 className="mt-4 text-4xl font-black uppercase italic leading-[0.9] tracking-[-0.04em] text-white sm:text-5xl md:text-7xl">
+              MADE TO
+              <br />
+              BE NOTICED.
+            </h2>
+
+            <p className="mt-5 max-w-xl text-sm leading-7 text-zinc-500 sm:mt-6 sm:text-base">
+              Real results from real enthusiasts.
+            </p>
+
           </div>
         </FadeIn>
 
-        {/* Review */}
+        {/* REVIEW */}
 
-        <FadeIn delay={0.1}>
-          <div className="mt-20 border-y border-white/10 py-16 md:mt-28 md:py-24">
+        <FadeIn delay={0.08}>
+          <div className="mt-10 border-y border-white/10 py-8 sm:mt-16 sm:py-12 md:mt-20 md:py-20">
 
             <Quote
-              size={36}
+              size={24}
               strokeWidth={1}
-              className="text-[#C8956C]"
+              className="text-[#C8956C] sm:h-8 sm:w-8"
             />
 
-            <blockquote className="mt-8 max-w-5xl text-3xl font-medium leading-tight tracking-tight text-white md:text-5xl">
+            <blockquote className="mt-5 max-w-4xl text-xl font-medium leading-[1.25] tracking-tight text-white sm:mt-7 sm:text-3xl md:text-5xl">
               “{review.quote}”
             </blockquote>
 
-            <div className="mt-12 flex flex-col justify-between gap-8 md:flex-row md:items-end">
+            <div className="mt-7 flex items-center justify-between gap-4 sm:mt-10">
 
               <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-white">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white sm:text-xs sm:tracking-[0.2em]">
                   {review.name}
                 </p>
 
-                <p className="mt-2 text-sm uppercase tracking-[0.15em] text-zinc-500">
+                <p className="mt-1 text-[9px] uppercase tracking-[0.15em] text-zinc-500 sm:mt-2 sm:text-xs">
                   {review.product}
                 </p>
               </div>
 
-              {/* Controls */}
-
-              <div className="flex items-center gap-3">
+              <div className="flex gap-2">
 
                 <button
                   type="button"
                   onClick={previous}
                   aria-label="Previous review"
-                  className="flex h-12 w-12 items-center justify-center border border-white/10 text-white transition-all duration-300 hover:border-white hover:bg-white hover:text-black"
+                  className="flex h-9 w-9 items-center justify-center border border-white/10 text-white transition-all duration-300 hover:border-white hover:bg-white hover:text-black sm:h-11 sm:w-11"
                 >
-                  <ArrowLeft size={18} />
+                  <ArrowLeft size={15} />
                 </button>
 
                 <button
                   type="button"
                   onClick={next}
                   aria-label="Next review"
-                  className="flex h-12 w-12 items-center justify-center border border-white/10 text-white transition-all duration-300 hover:border-white hover:bg-white hover:text-black"
+                  className="flex h-9 w-9 items-center justify-center border border-white/10 text-white transition-all duration-300 hover:border-white hover:bg-white hover:text-black sm:h-11 sm:w-11"
                 >
-                  <ArrowRight size={18} />
+                  <ArrowRight size={15} />
                 </button>
 
               </div>
 
             </div>
+
           </div>
         </FadeIn>
 
-        {/* Indicators */}
+        {/* INDICATORS */}
 
-        <div className="mt-8 flex gap-2">
+        <div className="mt-5 flex gap-2 sm:mt-7">
           {reviews.map((_, index) => (
             <button
               key={index}
@@ -134,8 +134,8 @@ export function Testimonials() {
               aria-label={`Go to review ${index + 1}`}
               className={`h-1 transition-all duration-300 ${
                 index === active
-                  ? "w-10 bg-[#C8956C]"
-                  : "w-4 bg-white/20"
+                  ? "w-8 bg-[#C8956C]"
+                  : "w-3 bg-white/20"
               }`}
             />
           ))}

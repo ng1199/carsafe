@@ -2,7 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Minus, Plus, Trash2 } from "lucide-react";
+import {
+  ArrowLeft,
+  Minus,
+  Plus,
+  Trash2,
+} from "lucide-react";
 import { useCart } from "@/lib/cart/CartContext";
 
 export default function CartPage() {
@@ -19,64 +24,75 @@ export default function CartPage() {
   return (
     <main className="min-h-screen bg-[#050505] text-white">
 
-      {/* HEADER */}
+      {/* =====================================================
+          HEADER
+      ===================================================== */}
 
       <header className="border-b border-white/[0.06]">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-6 sm:py-6 lg:px-8">
 
           <Link
             href="/"
-            className="text-xl font-black tracking-[0.25em]"
+            className="text-lg font-black tracking-[0.25em] sm:text-xl"
           >
             CARSAFE
           </Link>
 
           <Link
             href="/"
-            className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500 transition hover:text-white"
+            className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.15em] text-zinc-500 transition hover:text-white sm:text-xs sm:tracking-[0.2em]"
           >
-            <ArrowLeft size={15} />
-            Continue Shopping
+            <ArrowLeft size={14} />
+            <span>Continue Shopping</span>
           </Link>
 
         </div>
       </header>
 
-      {/* CART */}
+      {/* =====================================================
+          CART
+      ===================================================== */}
 
-      <section className="px-6 py-16 lg:px-8 lg:py-24">
+      <section className="px-5 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-24">
+
         <div className="mx-auto max-w-7xl">
 
-          <div className="mb-14">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#C8956C]">
+          {/* HEADER */}
+
+          <div className="mb-9 sm:mb-12">
+
+            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#C8956C] sm:text-xs">
               YOUR CART
             </p>
 
-            <h1 className="mt-4 text-5xl font-black uppercase italic tracking-[-0.04em] md:text-7xl">
+            <h1 className="mt-3 text-4xl font-black uppercase italic leading-[0.9] tracking-[-0.04em] sm:mt-4 sm:text-5xl md:text-7xl">
               READY TO
               <br />
               DETAIL.
             </h1>
+
           </div>
+
+          {/* =================================================
+              EMPTY CART
+          ================================================= */}
 
           {items.length === 0 ? (
 
-            /* EMPTY CART */
+            <div className="border border-white/10 bg-[#0D0D0D] px-5 py-16 text-center sm:px-6 sm:py-20">
 
-            <div className="border border-white/10 bg-[#0D0D0D] px-6 py-24 text-center">
-
-              <h2 className="text-3xl font-black uppercase italic">
+              <h2 className="text-2xl font-black uppercase italic sm:text-3xl">
                 YOUR CART IS EMPTY
               </h2>
 
-              <p className="mx-auto mt-5 max-w-md text-sm leading-7 text-zinc-500">
+              <p className="mx-auto mt-4 max-w-md text-xs leading-6 text-zinc-500 sm:text-sm sm:leading-7">
                 Your CARSAFE products will appear here once you add
                 something to your cart.
               </p>
 
               <Link
                 href="/#products"
-                className="mt-8 inline-flex h-12 items-center justify-center bg-[#C8956C] px-8 text-xs font-bold uppercase tracking-[0.2em] text-black transition hover:bg-[#D7A77D]"
+                className="mt-7 inline-flex h-11 items-center justify-center bg-[#C8956C] px-7 text-[10px] font-bold uppercase tracking-[0.18em] text-black transition hover:bg-[#D7A77D] sm:h-12 sm:px-8 sm:text-xs"
               >
                 SHOP PRODUCTS
               </Link>
@@ -85,11 +101,13 @@ export default function CartPage() {
 
           ) : (
 
-            <div className="grid gap-12 lg:grid-cols-3">
+            <div className="grid gap-8 lg:grid-cols-3 lg:gap-12">
 
-              {/* CART ITEMS */}
+              {/* =================================================
+                  CART ITEMS
+              ================================================= */}
 
-              <div className="space-y-5 lg:col-span-2">
+              <div className="space-y-3 lg:col-span-2 sm:space-y-5">
 
                 {items.map((item) => {
 
@@ -103,12 +121,12 @@ export default function CartPage() {
                   return (
                     <article
                       key={item.id}
-                      className="flex flex-col gap-6 border border-white/10 bg-[#0D0D0D] p-5 sm:flex-row sm:items-center"
+                      className="flex gap-3 border border-white/10 bg-[#0D0D0D] p-3 sm:gap-5 sm:p-5"
                     >
 
                       {/* IMAGE */}
 
-                      <div className="relative aspect-square w-full shrink-0 overflow-hidden bg-[#111] sm:h-36 sm:w-36">
+                      <div className="relative h-24 w-24 shrink-0 overflow-hidden bg-[#111] sm:h-32 sm:w-32 md:h-36 md:w-36">
 
                         <Image
                           src={item.image}
@@ -122,25 +140,29 @@ export default function CartPage() {
 
                       {/* DETAILS */}
 
-                      <div className="flex-1">
+                      <div className="flex min-w-0 flex-1 flex-col justify-between">
 
-                        <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#C8956C]">
-                          {item.category}
-                        </p>
+                        <div>
 
-                        <h2 className="mt-2 text-xl font-black uppercase italic">
-                          {item.name}
-                        </h2>
+                          <p className="text-[8px] font-semibold uppercase tracking-[0.2em] text-[#C8956C] sm:text-[10px] sm:tracking-[0.25em]">
+                            {item.category}
+                          </p>
 
-                        <p className="mt-3 text-sm text-zinc-500">
-                          {item.price}
-                        </p>
+                          <h2 className="mt-1.5 text-sm font-black uppercase italic leading-tight sm:mt-2 sm:text-xl">
+                            {item.name}
+                          </h2>
 
-                        {/* QUANTITY */}
+                          <p className="mt-1.5 text-xs text-zinc-500 sm:mt-3 sm:text-sm">
+                            {item.price}
+                          </p>
 
-                        <div className="mt-5 flex items-center gap-4">
+                        </div>
 
-                          <div className="flex h-10 items-center border border-white/10">
+                        {/* QUANTITY + REMOVE */}
+
+                        <div className="mt-3 flex flex-wrap items-center gap-3 sm:mt-5 sm:gap-4">
+
+                          <div className="flex h-8 items-center border border-white/10 sm:h-10">
 
                             <button
                               type="button"
@@ -150,12 +172,13 @@ export default function CartPage() {
                                   item.quantity - 1
                                 )
                               }
-                              className="flex h-full w-10 items-center justify-center text-zinc-500 transition hover:text-white"
+                              aria-label="Decrease quantity"
+                              className="flex h-full w-8 items-center justify-center text-zinc-500 transition hover:text-white sm:w-10"
                             >
-                              <Minus size={14} />
+                              <Minus size={12} />
                             </button>
 
-                            <span className="w-10 text-center text-sm">
+                            <span className="w-7 text-center text-xs sm:w-10 sm:text-sm">
                               {item.quantity}
                             </span>
 
@@ -167,9 +190,10 @@ export default function CartPage() {
                                   item.quantity + 1
                                 )
                               }
-                              className="flex h-full w-10 items-center justify-center text-zinc-500 transition hover:text-white"
+                              aria-label="Increase quantity"
+                              className="flex h-full w-8 items-center justify-center text-zinc-500 transition hover:text-white sm:w-10"
                             >
-                              <Plus size={14} />
+                              <Plus size={12} />
                             </button>
 
                           </div>
@@ -179,10 +203,10 @@ export default function CartPage() {
                             onClick={() =>
                               removeFromCart(item.id)
                             }
-                            className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-600 transition hover:text-red-400"
+                            className="flex items-center gap-1.5 text-[8px] font-semibold uppercase tracking-[0.15em] text-zinc-600 transition hover:text-red-400 sm:text-[10px] sm:tracking-[0.2em]"
                           >
-                            <Trash2 size={14} />
-                            Remove
+                            <Trash2 size={12} />
+                            REMOVE
                           </button>
 
                         </div>
@@ -191,13 +215,13 @@ export default function CartPage() {
 
                       {/* ITEM TOTAL */}
 
-                      <div className="text-left sm:text-right">
+                      <div className="hidden shrink-0 text-right sm:block">
 
-                        <p className="text-[10px] uppercase tracking-[0.2em] text-zinc-600">
+                        <p className="text-[9px] uppercase tracking-[0.2em] text-zinc-600">
                           TOTAL
                         </p>
 
-                        <p className="mt-2 text-lg font-semibold">
+                        <p className="mt-2 text-base font-semibold md:text-lg">
                           {formatPrice(itemTotal)}
                         </p>
 
@@ -209,17 +233,19 @@ export default function CartPage() {
 
               </div>
 
-              {/* SUMMARY */}
+              {/* =================================================
+                  ORDER SUMMARY
+              ================================================= */}
 
-              <aside className="h-fit border border-white/10 bg-[#0D0D0D] p-7 lg:p-8">
+              <aside className="h-fit border border-white/10 bg-[#0D0D0D] p-5 sm:p-7 lg:p-8">
 
-                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#C8956C]">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#C8956C] sm:text-xs">
                   ORDER SUMMARY
                 </p>
 
-                <div className="mt-8 space-y-5 border-b border-white/10 pb-7">
+                <div className="mt-6 space-y-4 border-b border-white/10 pb-5 sm:mt-8 sm:space-y-5 sm:pb-7">
 
-                  <div className="flex justify-between text-sm">
+                  <div className="flex justify-between text-xs sm:text-sm">
                     <span className="text-zinc-500">
                       Subtotal
                     </span>
@@ -229,40 +255,42 @@ export default function CartPage() {
                     </span>
                   </div>
 
-                  <div className="flex justify-between text-sm">
+                  <div className="flex justify-between gap-4 text-xs sm:text-sm">
+
                     <span className="text-zinc-500">
                       Shipping
                     </span>
 
-                    <span className="text-zinc-400">
+                    <span className="text-right text-zinc-400">
                       Calculated at checkout
                     </span>
+
                   </div>
 
                 </div>
 
-                <div className="flex items-end justify-between py-7">
+                <div className="flex items-end justify-between py-5 sm:py-7">
 
-                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500 sm:text-xs">
                     TOTAL
                   </span>
 
-                  <span className="text-2xl font-semibold">
+                  <span className="text-xl font-semibold sm:text-2xl">
                     {formatPrice(totalPrice)}
                   </span>
 
                 </div>
 
                 <Link
-                    href="/checkout"
-                    className="flex h-14 w-full items-center justify-center bg-[#C8956C] text-xs font-bold uppercase tracking-[0.2em] text-black transition hover:bg-[#D7A77D]"
+                  href="/checkout"
+                  className="flex h-12 w-full items-center justify-center bg-[#C8956C] text-[10px] font-bold uppercase tracking-[0.16em] text-black transition hover:bg-[#D7A77D] sm:h-14 sm:text-xs sm:tracking-[0.2em]"
                 >
-                    PROCEED TO CHECKOUT
+                  PROCEED TO CHECKOUT
                 </Link>
 
                 <Link
                   href="/#products"
-                  className="mt-3 flex h-14 w-full items-center justify-center border border-white/10 text-xs font-bold uppercase tracking-[0.2em] text-white transition hover:border-white"
+                  className="mt-2.5 flex h-12 w-full items-center justify-center border border-white/10 text-[10px] font-bold uppercase tracking-[0.16em] text-white transition hover:border-white sm:h-14 sm:text-xs sm:tracking-[0.2em]"
                 >
                   CONTINUE SHOPPING
                 </Link>
@@ -274,6 +302,7 @@ export default function CartPage() {
           )}
 
         </div>
+
       </section>
 
     </main>
